@@ -6,6 +6,8 @@
 
 > \* Equal contribution
 
+> 📄 **Paper:** [arXiv:2604.20775](https://arxiv.org/abs/2604.20775)
+
 This repository implements **FKL**, a tractable estimator of the Kullback–Leibler divergence between probability measures on **function space**, together with the experiments from the paper.
 
 ## Why function space?
@@ -109,3 +111,20 @@ FKL/
   functional_fm.py  # Functional flow matching implementation
   functional_kl.py  # KL divergence estimation
 ```
+
+## Citation
+
+If you find our paper useful, please cite:
+
+```bibtex
+@article{wang2026relative,
+  title={Relative Entropy Estimation in Function Space: Theory and Applications to Trajectory Inference},
+  author={Wang, Chao and Nepote, Luca and Franzese, Giulio and Michiardi, Pietro},
+  journal={arXiv preprint arXiv:2604.20775},
+  year={2026}
+}
+```
+
+## License
+
+This project is released under the [MIT License](LICENSE).
