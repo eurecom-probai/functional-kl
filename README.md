@@ -31,7 +31,7 @@ We treat path measures as first-class citizens and estimate the KL divergence di
 Using **Functional Flow Matching (FFM)** with the linear interpolant $X_t = (1-t) X_0 + t X_1$ and $\mu_t = \mathrm{Law}(X_t)$, we train class-conditional velocity fields $v^A_t$ and $v^B_t$ and obtain
 
 $$
-\mathrm{KL}(\nu^A \Vert \nu^B) = \int_0^1 \int_{\mathcal{H}} \frac{t}{1-t} \Vert v^A_t(x) - v^B_t(x) \Vert^2_{\mathcal{H}_{\mu_0}} \, d\mu^A_t(x) \, dt
+\mathrm{FKL}(\nu^A \Vert \nu^B) = \int_0^1 \int_{\mathcal{H}} \frac{t}{1-t} \Vert v^A_t(x) - v^B_t(x) \Vert^2_{\mathcal{H}_{\mu_0}} d\mu^A_t(x) dt
 $$
 
 where the norm is the Cameron–Martin norm associated with the trace-class noise covariance $C$. In practice the divergence is estimated by Monte Carlo:
