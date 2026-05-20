@@ -1,8 +1,10 @@
 # FKL — Functional KL Divergence Estimation
 
 > *Relative Entropy Estimation in Function Space: Theory and Applications to Trajectory Inference*
+
 > WANG Chao\*, NEPOTE Luca\*, FRANZESE Giulio, MICHIARDI Pietro
-> (\* equal contribution)
+
+> \* equal contribution
 
 This repository implements **FKL**, a tractable estimator of the Kullback–Leibler divergence between probability measures on **function space**, together with the experiments from the paper.
 
@@ -13,9 +15,9 @@ Trajectory Inference (TI) reconstructs dynamical processes from time-indexed sna
 **The problem:** marginal metrics are blind to the *temporal coupling* between snapshots. Infinitely many path measures are consistent with the same finite set of marginals — so two methods can produce **identical marginals but qualitatively different trajectories**, and marginal scores rank them inconsistently.
 
 <p align="center">
-  <img src="/home/nepote/FKL/figures/conceptual_figure_snapshots_icml.png" width="46%" alt="Snapshot-based metric: compares marginals at each time-point separately">
+  <img src="figures/conceptual_figure_snapshots_icml.png" width="46%" alt="Snapshot-based metric: compares marginals at each time-point separately">
   &nbsp;&nbsp;
-  <img src="/home/nepote/FKL/figures/conceptual_figure_trajectories_icml.png" width="46%" alt="Functional metric: compares full path measures over trajectories">
+  <img src="figures/conceptual_figure_trajectories_icml.png" width="46%" alt="Functional metric: compares full path measures over trajectories">
 </p>
 
 <p align="center">
@@ -26,20 +28,18 @@ Trajectory Inference (TI) reconstructs dynamical processes from time-indexed sna
 
 We treat path measures as first-class citizens and estimate the KL divergence directly between trajectory distributions $\nu^A$ and $\nu^B$.
 
-Using **Functional Flow Matching (FFM)** with the linear interpolant
-$X_t = (1-t)\,X_0 + t\,X_1$, $\mu_t = \mathrm{Law}(X_t)$,
-we train class-conditional velocity fields $v^A_t$, $v^B_t$ and obtain
+Using **Functional Flow Matching (FFM)** with the linear interpolant $X_t = (1-t)\,X_0 + t\,X_1$ and $\mu_t = \mathrm{Law}(X_t)$, we train class-conditional velocity fields $v^A_t, v^B_t$ and obtain
 
 $$
-\mathrm{KL}(\nu^A \,\|\, \nu^B) \;=\; \int_0^1\!\!\int_{\mathcal{H}} \frac{t}{1-t}\,\bigl\lVert v^A_t(x) - v^B_t(x) \bigr\rVert^2_{\mathcal{H}_{\mu_0}}\, d\mu^A_t(x)\,dt,
+\mathrm{KL}(\nu^A \, \Vert \, \nu^B) = \int_0^1 \int_{\mathcal{H}} \frac{t}{1-t} \, \Vert v^A_t(x) - v^B_t(x) \Vert^2_{\mathcal{H}_{\mu_0}} \, d\mu^A_t(x) \, dt ,
 $$
 
 where the norm is the Cameron–Martin norm associated with the trace-class noise covariance $C$. In practice the divergence is estimated by Monte Carlo:
 
-1. Sample $x_1^A \sim \nu^A$, $t \sim \mathcal{U}[0,1]$, $x_0 \sim \mathcal{N}(0, C)$.
-2. Form the interpolation $x_t^A = t\,x_1^A + (1-t)\,x_0$.
-3. Accumulate $\frac{t}{1-t}\,\lVert v^A_\theta(x_t^A) - v^B_\theta(x_t^A) \rVert^2_{C^{1/2}}$.
-4. Average; repeat with $A, B$ swapped for the reverse KL.
+1. Sample $x_1^A \sim \nu^A$, $\; t \sim \mathcal{U}[0,1]$, $\; x_0 \sim \mathcal{N}(0, C)$.
+2. Form the interpolation $x_t^A = t \, x_1^A + (1-t) \, x_0$.
+3. Accumulate $\dfrac{t}{1-t} \, \Vert v^A_\theta(x_t^A) - v^B_\theta(x_t^A) \Vert^2_{C^{1/2}}$.
+4. Average over samples; repeat with $A, B$ swapped for the reverse KL.
 
 The velocity fields are parametrized by a **Mesh-Informed Neural Operator (MINO-T)**, which makes the estimator **resolution-invariant**.
 
@@ -48,10 +48,10 @@ The velocity fields are parametrized by a **Mesh-Informed Neural Operator (MINO-
 On the synthetic **Petal** dataset at $\tau = 0.75$, MSBM and TIGON achieve nearly identical $W_2$ scores, yet generate qualitatively different trajectories — only FKL distinguishes them:
 
 <p align="center">
-  <img src="/home/nepote/FKL/figures/petal_msbm_vs_tigon.png" width="55%" alt="Petal dataset: MSBM vs TIGON, same marginals, different trajectories">
+  <img src="figures/petal_msbm_vs_tigon.png" width="55%" alt="Petal dataset: MSBM vs TIGON, same marginals, different trajectories">
 </p>
 
-| Method | $W_2$ | $\mathrm{KL}(\nu^A\|\nu^B)$ | $\mathrm{KL}(\nu^B\|\nu^A)$ |
+| Method | $W_2$ | $\mathrm{KL}(\nu^A \Vert \nu^B)$ | $\mathrm{KL}(\nu^B \Vert \nu^A)$ |
 |---|---|---|---|
 | MSBM  | 0.160 | **9.641**  | **17.055** |
 | TIGON | **0.155** | 96.144 | 35.505 |
