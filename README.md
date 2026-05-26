@@ -40,7 +40,7 @@ where the norm is the Cameron–Martin norm associated with the trace-class nois
 
 1. Sample $x_1^A \sim \nu^A$, $t \sim \mathcal{U}[0,1]$, $x_0 \sim \mathcal{N}(0, C)$.
 2. Form the interpolation $x_t^A = t \cdot x_1^A + (1-t) \cdot x_0$.
-3. Accumulate $\dfrac{t}{1-t} \Vert v^A_\theta(x_t^A) - v^B_\theta(x_t^A) \Vert^2_{C^{1/2}}$.
+3. Accumulate $\dfrac{t}{1-t} \Vert v^A_\theta(x_t^A) - v^B_\theta(x_t^A) \Vert^2_{\mathcal{H}_{\mu_0}}$.
 4. Average over samples; repeat with $A$ and $B$ swapped for the reverse KL.
 
 The velocity fields are parametrized by a **Mesh-Informed Neural Operator (MINO-T)**, which makes the estimator **resolution-invariant**.
