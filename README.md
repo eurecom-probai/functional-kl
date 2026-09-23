@@ -8,6 +8,8 @@
 
 > 📄 **Paper:** [arXiv:2604.20775](https://arxiv.org/abs/2604.20775)
 
+> 🏛️ **Venue:** ICML 2026 (43rd International Conference on Machine Learning)
+
 This repository implements **FKL**, a tractable estimator of the Kullback–Leibler divergence between probability measures on **function space**, together with the experiments from the paper.
 
 ## Why function space?
@@ -112,16 +114,33 @@ FKL/
   functional_kl.py  # KL divergence estimation
 ```
 
+## Tutorials, checkpoints and course materials
+
+- **Lecture** on this method (Cajal Bordeaux School of Neuroscience, 2026):
+  https://giuliofranzese.github.io/Cajal/functional_kl/lecture.html
+- **Colab tutorials** with pretrained checkpoints (run on a free T4):
+  [Gaussian mixture](https://colab.research.google.com/github/giuliofranzese/Cajal/blob/main/functional_kl/code/notebooks/tutorial_gm_pretrained.ipynb) ·
+  [Embryoid body](https://colab.research.google.com/github/giuliofranzese/Cajal/blob/main/functional_kl/code/notebooks/tutorial_eb_pretrained.ipynb) ·
+  [hESC](https://colab.research.google.com/github/giuliofranzese/Cajal/blob/main/functional_kl/code/notebooks/tutorial_hesc_pretrained.ipynb)
+- **Pretrained checkpoints and data** on Hugging Face:
+  [cajal-functional-kl-checkpoints](https://huggingface.co/GiulioFranzese/cajal-functional-kl-checkpoints) ·
+  [cajal-trajectory-inference-data](https://huggingface.co/datasets/GiulioFranzese/cajal-trajectory-inference-data)
+- Full course repository: https://github.com/giuliofranzese/Cajal
+
+Developed in the Data Science Department at EURECOM — https://franzese.eurecom.io
+
 ## Citation
 
 If you find our paper useful, please cite:
 
 ```bibtex
-@article{wang2026relative,
+@inproceedings{wang2026relative,
   title={Relative Entropy Estimation in Function Space: Theory and Applications to Trajectory Inference},
   author={Wang, Chao and Nepote, Luca and Franzese, Giulio and Michiardi, Pietro},
-  journal={arXiv preprint arXiv:2604.20775},
-  year={2026}
+  booktitle={43rd International Conference on Machine Learning (ICML)},
+  year={2026},
+  eprint={2604.20775},
+  archiveprefix={arXiv}
 }
 ```
 
